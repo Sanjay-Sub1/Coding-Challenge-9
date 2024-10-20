@@ -51,6 +51,16 @@ class Section{
             listbook += `${book.title}, ${available}`;
           });
     }
+    
+    calculateTotalBooksAvailable(){
+        let availableCount = 0
+
+        this.books.forEach(book => {
+            if(book.isAvailable){
+                availableCount++;
+            }
+        });
+    }
 }
 
 class Patron{
