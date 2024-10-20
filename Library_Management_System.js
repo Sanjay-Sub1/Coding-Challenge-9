@@ -18,3 +18,37 @@ class Book {
     this._isAvailable = availability;
     }
 }
+
+class Section{
+    constructor(name){
+        this.name = name;
+        this.books = [];
+    }
+
+    addBook(book){
+        if (book instanceof Book){
+            this.books.push(book);
+        }
+        else{
+            console.log("Error");
+        }
+    }
+
+    getAvailableBooks(){
+        console.log(this.books.filter(book => book.isAvailable).length);
+    }
+    
+    listBooks(){
+        let listbook = "";
+
+        this.books.forEach(book => {
+            let available;
+            if (book.isAvailable) {
+              available = "Available";
+            } else {
+              available = "Borrowed";
+            }
+            listbook += `${book.title}, ${available}`;
+          });
+    }
+}
