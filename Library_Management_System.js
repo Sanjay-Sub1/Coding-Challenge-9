@@ -52,3 +52,42 @@ class Section{
           });
     }
 }
+
+class Patron{
+    constructor(name){
+        this.name = name;
+        this.borrowedBooks = [];
+    }
+    
+    borrowBook(book){
+        if (book.isAvailable){
+            book.isAvailable = false;
+            this.borrowedBooks.push(book);
+            console.log(`${this.name} is borrowing ${book.title}`);
+        }
+        else{
+            console.log("Book not available");
+        }
+    }
+
+    returnBook(book){
+        if (this.borrowedBooks.includes(book)){
+            book.isAvailable = true;
+            this.borrowedBooks = this.borrowedBooks.filter(b => b !== book);
+            console.log(`${this.name} returned ${book.title}`);
+        }
+        else{
+            console.log(`${this.name} hasn't borrowed ${book.title}`);
+        }
+    }
+
+    listBorrowedBooks(){
+        if(this.borrowedBooks.length === 0){
+            console.log(`${this.name} has no borrowed books`)
+        }
+        else{
+            console.log(`${this.name} has borrowed books`);
+            this.borrowedBooks.forEach(book => console.log(`${book.title}`));
+        }
+    }
+}
