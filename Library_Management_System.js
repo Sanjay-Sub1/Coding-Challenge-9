@@ -91,3 +91,20 @@ class Patron{
         }
     }
 }
+
+class VIPPatron extends Patron {
+    constructor(name) {
+        super(name);
+        this.priority = true;
+    }
+
+    borrowBook(book) {
+        if (book.isAvailable || this.borrowedBooks.includes(book)) {
+            book.isAvailable = false;
+            this.borrowedBooks.push(book);
+            console.log(`${this.name} (VIP) is borrowing "${book.title}".`);
+        } else {
+            console.log(`Error: "${book.title}" is currently unavailable.`);
+        }
+    }
+}
